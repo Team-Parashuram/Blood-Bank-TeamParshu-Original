@@ -2,91 +2,7 @@ import type React from "react"
 import { useState } from "react"
 import { ComposableMap, Geographies, Geography } from "react-simple-maps"
 import { motion } from "framer-motion"
-const INDIA_GEO_DATA = {
-  type: "FeatureCollection",
-  features: [
-    {
-      type: "Feature",
-      properties: { name: "Andhra Pradesh" },
-      geometry: {
-        type: "Polygon",
-        coordinates: [
-          [
-            [83.0, 18.0],
-            [84.0, 18.0],
-            [84.0, 17.0],
-            [83.0, 17.0],
-            [83.0, 18.0],
-          ],
-        ],
-      },
-    },
-    {
-      type: "Feature",
-      properties: { name: "Karnataka" },
-      geometry: {
-        type: "Polygon",
-        coordinates: [
-          [
-            [75.0, 15.0],
-            [77.0, 15.0],
-            [77.0, 13.0],
-            [75.0, 13.0],
-            [75.0, 15.0],
-          ],
-        ],
-      },
-    },
-    {
-      type: "Feature",
-      properties: { name: "Tamil Nadu" },
-      geometry: {
-        type: "Polygon",
-        coordinates: [
-          [
-            [77.0, 13.0],
-            [79.0, 13.0],
-            [79.0, 11.0],
-            [77.0, 11.0],
-            [77.0, 13.0],
-          ],
-        ],
-      },
-    },
-    {
-      type: "Feature",
-      properties: { name: "Kerala" },
-      geometry: {
-        type: "Polygon",
-        coordinates: [
-          [
-            [75.0, 12.0],
-            [77.0, 12.0],
-            [77.0, 8.0],
-            [75.0, 8.0],
-            [75.0, 12.0],
-          ],
-        ],
-      },
-    },
-    {
-      type: "Feature",
-      properties: { name: "Maharashtra" },
-      geometry: {
-        type: "Polygon",
-        coordinates: [
-          [
-            [72.0, 20.0],
-            [78.0, 20.0],
-            [78.0, 18.0],
-            [72.0, 18.0],
-            [72.0, 20.0],
-          ],
-        ],
-      },
-    },
-  ],
-}
+
 
 import {
   Heart,
@@ -794,61 +710,7 @@ const Landing = () => {
                     className={`border-[0.5px] ${theme === "light" ? "border-red-500/10" : "border-primary/10"}`}
                   />
                 ))} */}
-                <div className="relative w-full h-full">
-                  <ComposableMap
-                    projection="geoMercator"
-                    projectionConfig={{
-                      scale: 1000,
-                      center: [78.9629, 22.5937],
-                    }}
-                    className="w-full h-full"
-                  >
-                    <Geographies geography={INDIA_GEO_DATA}>
-                      {({ geographies }) =>
-                        geographies.map((geo) => {
-                          const isHovered = hoveredState === geo.properties.name
-
-                          return (
-                            <Geography
-                              key={geo.rsmKey}
-                              geography={geo}
-                              fill={isHovered ? "#FF8787" : "#FF6B6B"}
-                              stroke="#FFFFFF"
-                              strokeWidth={0.5}
-                              style={{
-                                default: {
-                                  outline: "none",
-                                },
-                                hover: {
-                                  fill: "#FF8787",
-                                  outline: "none",
-                                  cursor: "pointer",
-                                },
-                                pressed: {
-                                  outline: "none",
-                                },
-                              }}
-                              onMouseEnter={() => {
-                                setTooltipContent(geo.properties.name)
-                                setHoveredState(geo.properties.name)
-                              }}
-                              onMouseLeave={() => {
-                                setTooltipContent("")
-                                setHoveredState(null)
-                              }}
-                            />
-                          )
-                        })
-                      }
-                    </Geographies>
-                  </ComposableMap>
-
-                  {tooltipContent && (
-                    <div className="absolute px-3 py-2 text-sm bg-white rounded-lg shadow-lg top-4 left-4">
-                      {tooltipContent}
-                    </div>
-                  )}
-                </div>
+               
               </div>
             </div>
           </motion.div>
