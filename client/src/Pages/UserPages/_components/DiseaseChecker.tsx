@@ -11,6 +11,7 @@ import { Activity, FileText, Upload, AlertCircle, Stethoscope, ClipboardList } f
 import { toast } from "react-hot-toast"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
+
 const DiseaseChecker = () => {
     const [formData, setFormData] = useState({
         currentSymptoms: "",
