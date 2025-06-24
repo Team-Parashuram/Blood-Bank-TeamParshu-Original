@@ -36,7 +36,7 @@ interface IInventory {
 
     const fetchBloodAvailable = async () => {
         try {
-        const { data } = await axiosInstance.get("/patient/bloodAvailable")
+        const { data } = await axiosInstance.get("/user/bloodAvailable")
         setBloodAvailable(data.data)
         } catch (error) {
         console.error("Error fetching blood availability:", error)

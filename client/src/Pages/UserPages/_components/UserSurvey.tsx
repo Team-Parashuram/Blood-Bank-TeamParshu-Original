@@ -28,7 +28,7 @@ const healthIssuesList = [
   "drug_abuse"
 ]
 
-const PatientSurvey = () => {
+const UserSurvey = () => {
   const navigate = useNavigate()
   const [symptomsIllness, setSymptomsIllness] = useState('')
   const [recentMedicalProcedures, setRecentMedicalProcedures] = useState('')
@@ -48,7 +48,7 @@ const PatientSurvey = () => {
   const giveSurvey = async (e: any) => {
     e.preventDefault()
     try {
-      await axios.post(GO_BACK + "/patient/postPatientSurvey", {
+      await axios.post(GO_BACK + "/user/postPatientSurvey", {
         symptoms_illness: symptomsIllness,
         recent_medical_procedures: recentMedicalProcedures,
         travel_history: travelHistory,
@@ -86,4 +86,4 @@ const PatientSurvey = () => {
   )
 }
 
-export default PatientSurvey
+export default UserSurvey

@@ -33,7 +33,7 @@ interface IBloodRequest {
 
     const fetchBloodRequests = async () => {
         try {
-        const { data } = await axiosInstance.get("/patient/bloodRequests")
+        const { data } = await axiosInstance.get("/user/bloodRequests")
         setBloodRequests(data.data)
         } catch (error) {
         console.error("Error fetching blood requests:", error)
@@ -48,7 +48,7 @@ interface IBloodRequest {
     const handleSubmitRequest = async (e: React.FormEvent) => {
         e.preventDefault()
         try {
-        await axiosInstance.post("/patient/bloodRequest", newRequest)
+        await axiosInstance.post("/user/bloodRequest", newRequest)
         setNewRequest({ bloodGroup: "", units: "" })
         await fetchBloodRequests()
         toast.success("Blood request submitted successfully.")
@@ -60,7 +60,7 @@ interface IBloodRequest {
 
     const handleDeleteRequest = async (requestId: string) => {
         try {
-        await axiosInstance.delete(`/patient/bloodRequest/${requestId}`)
+        await axiosInstance.delete(`/user/bloodRequest/${requestId}`)
         await fetchBloodRequests()
         toast.success("Blood request deleted successfully.")
         } catch (error) {

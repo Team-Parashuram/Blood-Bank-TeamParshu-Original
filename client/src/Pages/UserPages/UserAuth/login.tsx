@@ -30,7 +30,7 @@ const ForgotPasswordModal = ({
     e.preventDefault()
     setError("")
     try {
-      const res = await axiosInstance.post("/patient/sendOtpPatient", { email: emailReset })
+      const res = await axiosInstance.post("/user/sendOtpUser", { email: emailReset })
       if (res.status === 200) {
         setInfo("OTP sent to your email.")
         setResetStep(2)
@@ -48,7 +48,7 @@ const ForgotPasswordModal = ({
     e.preventDefault()
     setError("")
     try {
-      const res = await axiosInstance.post("/patient/verifyOtpPatient", {
+      const res = await axiosInstance.post("/user/verifyOtpUser", {
         email: emailReset,
         otp: otpReset,
       })
@@ -69,7 +69,7 @@ const ForgotPasswordModal = ({
     e.preventDefault()
     setError("")
     try {
-      const res = await axiosInstance.post("/patient/resetPassPatient", {
+      const res = await axiosInstance.post("/user/resetPassUser", {
         email: emailReset,
         password: newPassword,
         otp: otpReset,
@@ -97,12 +97,12 @@ const ForgotPasswordModal = ({
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-white rounded-lg shadow-lg max-w-md w-full p-6"
+            className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg"
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
           >
-            <h2 className="text-xl font-bold mb-4">Forgot Password</h2>
+            <h2 className="mb-4 text-xl font-bold">Forgot Password</h2>
             {info && <p className="mb-4 text-green-600">{info}</p>}
             {resetStep === 1 && (
               <form onSubmit={sendOtpPassReset} className="space-y-4">
@@ -176,7 +176,7 @@ const ForgotPasswordModal = ({
   )
 }
 
-const LoginPatient = () => {
+const LoginUser = () => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({ email: "", password: "" })
   const [error, setError] = useState("")
@@ -191,10 +191,10 @@ const LoginPatient = () => {
     e.preventDefault()
     setError("")
     try {
-      const response = await axiosInstance.post("/patient/login", formData)
+      const response = await axiosInstance.post("/user/login", formData)
       if (response.status === 200) {
         localStorage.setItem("token", response.data.data)
-        navigate("/patient/dashboard")
+        navigate("/user/dashboard")
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
@@ -207,12 +207,12 @@ const LoginPatient = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-base-100 to-primary/20" data-theme="bloodsphere">
+      <div className="min-h-screen bg-slate-100">
         <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
           <section className="relative flex items-end h-32 bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
             <img
               alt="Blood Donation"
-              src="/blood-donor-login.jpg"
+              src="/sign-in-health.webp"
               className="absolute inset-0 object-cover w-full h-full opacity-80"
             />
 
@@ -224,7 +224,7 @@ const LoginPatient = () => {
               >
                 <Droplets className="h-8 text-white sm:h-10" />
                 <Badge variant="secondary" className="text-sm">
-                  Patient Portal
+                  User Portal
                 </Badge>
               </motion.div>
 
@@ -243,12 +243,12 @@ const LoginPatient = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Sign in to manage your patient dashboard and view your appointments.
+                Sign in to manage your user dashboard and view your appointments.
               </motion.p>
             </div>
           </section>
 
-          <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+          <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6 text-slate-600">
             <Card className="w-full max-w-xl">
               <CardHeader className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -258,13 +258,13 @@ const LoginPatient = () => {
                   </div>
                   <div className="space-y-1">
                     <Badge variant="outline" className="mb-2">
-                      Patient Access
+                      User Access
                     </Badge>
-                    <CardTitle className="text-2xl">Sign in to Patient Portal</CardTitle>
+                    <CardTitle className="text-2xl">Sign in to User Portal</CardTitle>
                   </div>
                 </div>
                 <CardDescription>
-                  Access your patient dashboard to manage appointments and track your health records.
+                  Access your user dashboard to manage appointments and track your health records.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -316,14 +316,14 @@ const LoginPatient = () => {
                   )}
 
                   <div className="space-y-4">
-                    <Button type="submit" className="w-full" size="lg">
-                      Sign in as Patient
+                    <Button type="submit" className="w-full text-slate-100" size="lg">
+                      Sign in as User
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <p className="text-sm text-gray-600">
                         Not registered?{" "}
-                        <Link to="/patient/register" className="font-medium text-primary hover:underline">
+                        <Link to="/user/register" className="font-medium text-primary hover:underline">
                           Register here
                         </Link>
                       </p>
@@ -350,4 +350,4 @@ const LoginPatient = () => {
   )
 }
 
-export default LoginPatient
+export default LoginUser

@@ -5,11 +5,12 @@ import MedicalLoader from '@/components/Loader';
 import axiosInstance from '@/util/axiosInstance';
 import { useUserStore } from '@/store/store';
 
-interface ProtectedDonorProps {
+interface ProtectedUserProps {
   children: ReactNode;
 }
 
-const ProtectedDonor: React.FC<ProtectedDonorProps> = ({ children }) => {
+
+const ProtectedUser: React.FC<ProtectedUserProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
   const setUser = useUserStore((state: any) => state.setUser);
 
@@ -22,14 +23,14 @@ const ProtectedDonor: React.FC<ProtectedDonorProps> = ({ children }) => {
       }
 
       try {
-        const response = await axiosInstance.get('/donor/verifyDonor', {
+        const response = await axiosInstance.get('/user/verifyUser', {
           headers: { Authorization: `Bearer ${token}` }
         });
 
-        setUser(response.data.data);
         setIsAuthenticated(response.status === 200);
+        setUser(response.data.data);
       } catch (error) {
-        console.error("Donor authentication check failed:", error);
+        console.error("User authentication check failed:", error);
         setIsAuthenticated(false);
       }
     };
@@ -42,10 +43,10 @@ const ProtectedDonor: React.FC<ProtectedDonorProps> = ({ children }) => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/donor/login" />;
+    return <Navigate to="/user/login" />;
   }
 
   return <>{children}</>;
 };
 
-export default ProtectedDonor;
+export default ProtectedUser;

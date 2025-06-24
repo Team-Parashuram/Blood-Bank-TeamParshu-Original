@@ -1,6 +1,5 @@
 import { useState, useEffect, ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
-import MedicalLoader from '@/components/Loader';
 import axiosInstance from '@/util/axiosInstance';
 import React from 'react'; // Added import for React
 
@@ -27,8 +26,7 @@ const Unprotected: React.FC<UnprotectedProps> = ({ children }) => {
         const responses = await Promise.allSettled([
           axiosInstance.get('/organisation/verifyOrganisation', { headers: { Authorization: `Bearer ${token}` } }),
           axiosInstance.get('/admin/verifyAdmin', { headers: { Authorization: `Bearer ${token}` } }),
-          axiosInstance.get('/donor/verifyDonor', { headers: { Authorization: `Bearer ${token}` } }),
-          axiosInstance.get('/patient/verifyPatient', { headers: { Authorization: `Bearer ${token}` } })
+          axiosInstance.get('/user/verifyUser', { headers: { Authorization: `Bearer ${token}` } })
         ]);
 
         const successfulResponse = responses.find(
@@ -60,10 +58,8 @@ const Unprotected: React.FC<UnprotectedProps> = ({ children }) => {
     switch (authState.userType) {
       case 'organisation':
         return <Navigate to="/organisation/dashboard" />;
-      case 'donor':
-        return <Navigate to="/donor/dashboard" />;
-      case 'patient':
-        return <Navigate to="/patient/dashboard" />;
+      case 'user':
+        return <Navigate to="/user/dashboard" />;
       case 'admin':
         return <Navigate to="/admin/dashboard" />;
       default:

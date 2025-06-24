@@ -228,7 +228,7 @@ const Landing = () => {
             <div
               className={`absolute inset-0 bg-gradient-to-br ${theme === "light" ? "from-red-500 to-orange-500" : "from-primary to-accent"} rounded-full blur-[100px] ${theme === "light" ? "opacity-10" : "opacity-20"}`}
             />
-            <motion.div
+            {/* <motion.div
               className="relative z-10 grid grid-cols-2 gap-3 sm:grid-cols-1"
               animate={{ y: [0, -20, 0] }}
               transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
@@ -269,7 +269,7 @@ const Landing = () => {
                   </div>
                 </motion.div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           <motion.div variants={itemVariants} className="max-w-xl">
@@ -334,28 +334,28 @@ const Landing = () => {
                   </DialogHeader>
                   <div className="grid gap-4 py-6">
                     {[
-                      {
-                        icon: Contact,
-                        label: "Admin",
-                        description: "Manage users, monitor donations, and oversee platform operations",
-                        path: "/admin/dashboard",
-                      },
-                      {
-                        icon: Heart,
-                        label: "Donor",
-                        description: "Donate blood and save lives",
-                        path: "/donor/dashboard",
-                      },
+                      // {
+                      //   icon: Contact,
+                      //   label: "Admin",
+                      //   description: "Manage users, monitor donations, and oversee platform operations",
+                      //   path: "/admin/dashboard",
+                      // },
+                      // {
+                      //   icon: Heart,
+                      //   label: "Donor",
+                      //   description: "Donate blood and save lives",
+                      //   path: "/donor/dashboard",
+                      // },
                       {
                         icon: Users,
-                        label: "Patient",
-                        description: "Find blood donors near you",
+                        label: "User",
+                        description: "Login to view dashboard",
                         path: "/patient/dashboard",
                       },
                       {
                         icon: Globe,
                         label: "Organisation",
-                        description: "Manage blood bank inventory",
+                        description: "Manage blood bank and more",
                         path: "/organisation/dashboard",
                       },
                     ].map((role) => (
@@ -710,7 +710,7 @@ const Landing = () => {
                     className={`border-[0.5px] ${theme === "light" ? "border-red-500/10" : "border-primary/10"}`}
                   />
                 ))} */}
-               
+              
               </div>
             </div>
           </motion.div>

@@ -1,4 +1,4 @@
-import { BloodRequest, Donation, DonationLocation, Donor, Inventory, Organisation, Patient } from '../model/model';
+import { BloodRequest, Donation, DonationLocation, User, Inventory, Organisation } from '../model/model';
 import { IOrganisation } from '../model/schema/organisation.schema';
 import { IInventory } from '../model/schema/inventory.schema';
 import ResponseApi from '../util/ApiResponse.util';
@@ -57,6 +57,7 @@ const register = async (req: Request, res: Response) => {
     );
   }
 };
+
 
 const login = async (req: Request, res: Response) => {
   try {
@@ -238,7 +239,7 @@ const updateInventory = async (req: Request, res: Response) => {
 const getBloodRequests = async (req: Request, res: Response) => {
   try {
     const bloodRequests = await BloodRequest.find().populate({
-      path: 'patientId',
+      path: 'userId',
       select: 'name email phoneNo'
     });
     return ResponseApi(res, 200, 'Blood requests retrieved successfully', bloodRequests);
@@ -270,8 +271,8 @@ const completeBloodRequest = async (req: Request, res: Response) => {
 
 const addBloodDonated = async (req: Request, res: Response) => {
   try{
-    const { donorEmail, quantity, _id } = req.body;
-    if(!donorEmail || !quantity || !_id){
+    const { userEmail, quantity, _id } = req.body;
+    if(!userEmail || !quantity || !_id){
       return ResponseApi(res, 400, 'Please provide all required fields');
     }
 
@@ -279,16 +280,16 @@ const addBloodDonated = async (req: Request, res: Response) => {
       return ResponseApi(res, 400,  'quantity can\'t be negative');
     }
 
-    const donor = await Donor.findOne({
-      email: donorEmail
+    const user = await User.findOne({
+      email: userEmail
     });
 
-    if(!donor){
-      return ResponseApi(res, 400, 'Donor not found');
+    if(!user){
+      return ResponseApi(res, 400, 'User not found');
     }
 
     const newRequest = {
-      donorId: donor._id,
+      userId: user._id,
       organisationId: _id,
       quantity
     };

@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/multer": "^1.4.13",
     "@types/node-cron": "^3.0.11",
+    "@types/uuid": "^10.0.0",
+    "axios": "^1.10.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -9,11 +13,13 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
     "morgan": "^1.10.0",
+    "multer": "^2.0.1",
     "node-cron": "^3.0.3",
     "nodemailer": "^6.10.0",
     "nodemon": "^3.1.9",
     "otplib": "^12.0.1",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
@@ -28,7 +34,7 @@
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2"
   },
-  "name": "blood-bank",
+  "name": "dhvani",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -37,7 +43,7 @@
     "format": "prettier --write ."
   },
   "keywords": [],
-  "author": "Shardendu Mishra",
+  "author": "Mayank Bansal",
   "license": "ISC",
-  "description": "A web application for blood bank management systema, to ease blood donation process."
+  "description": "A health application"
 }

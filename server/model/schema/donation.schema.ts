@@ -1,7 +1,7 @@
 import { Schema, Document, Types } from 'mongoose';
 
 interface IDonation extends Document {
-  donorId: Types.ObjectId;
+  userId: Types.ObjectId;
   quantity: string;
   organisationId: Types.ObjectId;
 }
@@ -10,10 +10,10 @@ interface IDonation extends Document {
 
 const DonationSchema = new Schema<IDonation>(
   {
-    donorId: {
+    userId: {
       type: Schema.Types.ObjectId,
-      ref: 'Donor',
-      required: [true, 'DonorId is required'],
+      ref: 'User',
+      required: [true, 'userId is required'],
       trim: true,
     },
     organisationId: {

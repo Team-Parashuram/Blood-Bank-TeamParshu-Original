@@ -1,9 +1,12 @@
 import mongoose, { Model } from 'mongoose';
 import { AdminSchema, IAdmin } from './schema/admin.schema';
-import { DonorSchema, IDonor } from './schema/donor.schema';
-import { PatientSchema, IPatient } from './schema/patient.schema';
+import { UserSchema, IUser } from './schema/user.schema';
 import { DonationSchema, IDonation } from './schema/donation.schema';
 import { InventorySchema, IInventory } from './schema/inventory.schema';
+import { DiseaseDetectionSchema, IDiseaseDetection } from './schema/disease-detection.schema';
+import { StrokeReportSchema, IStrokeReport } from './schema/stroke-report.schema';
+import { TBReportSchema, ITBReport } from './schema/tb-report.schema';
+import { FileSchema, IFile } from './schema/files.schema';
 import {
   OrganisationSchema,
   IOrganisation,
@@ -18,10 +21,18 @@ import {
 } from './schema/donation-location.schema';
 
 const Admin: Model<IAdmin> = mongoose.model<IAdmin>('Admin', AdminSchema);
-const Donor: Model<IDonor> = mongoose.model<IDonor>('Donor', DonorSchema);
-const Patient: Model<IPatient> = mongoose.model<IPatient>(
-  'Patient',
-  PatientSchema
+const File: Model<IFile> = mongoose.model<IFile>('File', FileSchema);
+const StrokeReport: Model<IStrokeReport> = mongoose.model<IStrokeReport>(
+  'StrokeReport',
+  StrokeReportSchema
+);
+const TBReport: Model<ITBReport> = mongoose.model<ITBReport>(
+  'TBReport',
+  TBReportSchema
+);
+const User: Model<IUser> = mongoose.model<IUser>(
+  'User',
+  UserSchema
 );
 const Donation: Model<IDonation> = mongoose.model<IDonation>(
   'Donation',
@@ -41,15 +52,21 @@ const BloodRequest: Model<IBloodRequest> = mongoose.model<IBloodRequest>(
 );
 const DonationLocation: Model<IDonationLocation> =
   mongoose.model<IDonationLocation>('DonationLocation', DonationLocationSchema);
+const DiseaseDetection: Model<IDiseaseDetection> = mongoose.model<IDiseaseDetection>(
+  'DiseaseDetection',
+  DiseaseDetectionSchema
+);
 
-  
 export {
   Organisation,
-  Patient,
+  User,
   Admin,
   BloodRequest,
+  StrokeReport,
+  TBReport,
   DonationLocation,
+  DiseaseDetection,
   Donation,
-  Donor,
   Inventory,
+  File,
 };

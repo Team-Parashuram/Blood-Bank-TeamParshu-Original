@@ -6,15 +6,13 @@ import {
   getBloodRequests,
   getOrganisation,
   verifyOtpAdmin,
-  deletePatient,
   resetPassword,
   sendOtpAdmin,
   getAnalytics,
   verifyAdmin,
-  deleteDonor,
-  getPatients,
+  deleteUsers,
   updateUser,
-  getDonors,
+  getUsers,
   register,
   login,
 } from '../../controller/admin.controller';
@@ -31,16 +29,14 @@ router.post('/sendOtpAdmin',sendOtpAdmin);
 router.post('/resetPassAdmin',resetPassword);
 router.post('/verifyOtpAdmin',verifyOtpAdmin);
 
-router.get('/getDonors',adminMiddleware ,getDonors);
-router.get('/getPatients',adminMiddleware ,getPatients);
+router.get('/getUsers',adminMiddleware ,getUsers);
 router.get('/verifyAdmin',adminMiddleware ,verifyAdmin);
 router.get('/getAnalytics',adminMiddleware ,getAnalytics);
 router.get('/getOrganisation',adminMiddleware ,getOrganisation);
 router.get('/getBloodRequests',adminMiddleware ,getBloodRequests);
 router.get('/getDonationLocations',adminMiddleware ,getDonationLocations);
 
-router.delete('/deleteDonor',adminMiddleware ,deleteDonor);
-router.delete('/deletePatient',adminMiddleware ,deletePatient);
+router.delete('/deleteUsers',adminMiddleware ,deleteUsers);
 router.delete('/deleteOrganisation',adminMiddleware ,deleteOrganisation);
 router.delete('/deleteBloodRequest',adminMiddleware ,deleteBloodRequest);
 router.delete('/deleteDonationLocation',adminMiddleware ,deleteDonationLocation);

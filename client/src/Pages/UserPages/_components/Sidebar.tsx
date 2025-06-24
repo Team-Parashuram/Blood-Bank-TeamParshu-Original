@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { ChevronLeft, ChevronRight, Droplet, ClipboardList, BotIcon, HelpCircle } from "lucide-react"
+import { ChevronLeft, ChevronRight, Droplet, ClipboardList, BotIcon, HelpCircle, User2, FileText, Activity, Upload } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -9,19 +9,23 @@ import { useThemeStore } from "@/store/themeStore"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 interface SidebarProps {
-    setActiveTab: (tab: "availability" | "requests" | "chatbot" | "faq") => void
+    setActiveTab: (tab: "availability" | "requests" | "chatbot" | "faq" | "profile" | "my-reports" | "disease-checker" | "submit-report") => void
     activeTab: string
     isCollapsed: boolean
     setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-
 const sidebarItems = [
+    { icon: Activity, label: "Disease Checker", id: "disease-checker" },
+    { icon: Upload, label: "Submit Report", id: "submit-report" },
+    { icon: FileText, label: "My Reports", id: "my-reports" },
     { icon: Droplet, label: "Blood Availability", id: "availability" },
     { icon: ClipboardList, label: "Blood Requests", id: "requests" },
     { icon: BotIcon, label: "Chat With AI", id: "chatbot" },
+    { icon: User2, label: "My Profile", id: "profile" },
     { icon: HelpCircle, label: "FAQ", id: "faq" },
 ]
+
 
 export function Sidebar({ setActiveTab, activeTab }: SidebarProps) {
     const [isCollapsed, setIsCollapsed] = useState(false)
@@ -51,7 +55,7 @@ export function Sidebar({ setActiveTab, activeTab }: SidebarProps) {
                 <div className="flex items-center justify-between p-4">
                     {!isCollapsed && (
                         <span className={`text-xl font-bold ${theme === "light" ? "text-gray-800" : "text-primary"}`}>
-                            BloodSphere
+                            Dhvani
                         </span>
                     )}
                     <Button
@@ -84,7 +88,7 @@ export function Sidebar({ setActiveTab, activeTab }: SidebarProps) {
                                                             : "bg-primary/10 text-primary"),
                                                     !isActive && theme === "light" && "text-gray-600 hover:bg-gray-100 hover:text-gray-900",
                                                 )}
-                                                onClick={() => setActiveTab(item.id as "availability" | "requests" | "chatbot" | "faq")}
+                                                onClick={() => setActiveTab(item.id as "availability" | "requests" | "chatbot" | "faq" | "profile")}
                                             >
                                                 <Icon className="w-5 h-5" />
                                                 {!isCollapsed && <span className="hidden lg:inline">{item.label}</span>}

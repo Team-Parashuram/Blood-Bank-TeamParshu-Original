@@ -1,29 +1,24 @@
 import {
-  Donor,
-  Patient,
-  Landing,
+  User,
+  LandingPage,
   NotFound,
-  DonorLogin,
   Organisation,
-  DonorRegister,
-  PatientLogin,
-  PatientRegister,
   OrganisationLogin,
   OrganisationRegister
 } from "./Pages/page"
 import Unprotected from "./components/Routes/UnProtectedRoute";
 import { Route, Routes } from "react-router-dom";
 import "./index.css"
-import ProtectedDonor from "./components/Routes/Protected/DonorProtected";
-import ProtectedPatient from "./components/Routes/Protected/PatientProtected";
 import ProtectedOrganisation from "./components/Routes/Protected/OrganisationProtected";
 import LoginAdmin from "./Pages/AdminPages/AdminAuth/login";
 import RegisterAdmin from "./Pages/AdminPages/AdminAuth/register";
 import Admin from "./Pages/AdminPages/page";
 import ProtectedAdmin from "./components/Routes/Protected/AdminPotected";
-import DonorSurvey from "./Pages/DonorPages/_components/DonorSurvey";
-import PatientSurvey from "./Pages/PatientPages/_components/PatientSurvey";
-import ChatBot from "./Pages/_AI-Integration/ChatBot";
+import ChatBot from "./Pages/AI-Integration/ChatBot";
+import ProtectedUser from "./components/Routes/Protected/UserProtected";
+import LoginUser from "./Pages/UserPages/UserAuth/login";
+import RegisterUser from "./Pages/UserPages/UserAuth/register";
+import UserSurvey from "./Pages/UserPages/_components/UserSurvey";
 
 
 const App = () => {
@@ -33,55 +28,31 @@ const App = () => {
         path="/"
         element={
           <Unprotected>
-            <Landing />
+            <LandingPage />
           </Unprotected>
         }
       />
       <Route
-        path="patient/chat"
+        path="user/chat"
         element={
-          <ProtectedPatient>
+          <ProtectedUser>
             <ChatBot />
-          </ProtectedPatient>
+          </ProtectedUser>
         }
       />
       <Route
-        path="donor/chat"
-        element={
-          <ProtectedDonor>
-            <ChatBot />
-          </ProtectedDonor>
-        }
-      />
-      <Route
-        path="/donor/login"
+        path="/user/login"
         element={
           <Unprotected>
-            <DonorLogin />
+            <LoginUser />
           </Unprotected>
         }
       />
       <Route
-        path="/donor/register"
+        path="/user/register"
         element={
           <Unprotected>
-            <DonorRegister />
-          </Unprotected>
-        }
-      />
-      <Route
-        path="/patient/login"
-        element={
-          <Unprotected>
-            <PatientLogin />
-          </Unprotected>
-        }
-      />
-      <Route
-        path="/patient/register"
-        element={
-          <Unprotected>
-            <PatientRegister />
+            <RegisterUser />
           </Unprotected>
         }
       />
@@ -102,37 +73,21 @@ const App = () => {
         }
       />
       <Route 
-      path="/donor/dashboard"
+      path="/user/dashboard"
       element={
-        <ProtectedDonor>
-          <Donor />
-        </ProtectedDonor>
+        <ProtectedUser>
+          <User />
+        </ProtectedUser>
       }
       />
-      <Route 
-      path="/patient/dashboard"
+      {/* <Route 
+      path="/user/survey"
       element={
-        <ProtectedPatient>
-          <Patient />
-        </ProtectedPatient>
+        <ProtectedUser>
+          <UserSurvey />
+        </ProtectedUser>
       }
-      />
-      <Route 
-      path="/patient/survey"
-      element={
-        <ProtectedPatient>
-          <PatientSurvey />
-        </ProtectedPatient>
-      }
-      />
-      <Route 
-      path="/donor/survey"
-      element={
-        <ProtectedDonor>
-          <DonorSurvey />
-        </ProtectedDonor>
-      }
-      />
+      /> */}
       <Route 
       path="/organisation/dashboard"
       element={

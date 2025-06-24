@@ -50,8 +50,7 @@ if (process.env.NODE_ENV === 'development') {
 
 
 app.use('/api/admin', router.AdminRouter);
-app.use('/api/donor', router.DonorRouter);
-app.use('/api/patient', router.PatientRouter);
+app.use('/api/user', router.UserRouter);
 app.use('/api/organisation', router.OrganisationRouter);
 
 // Routes Middleware

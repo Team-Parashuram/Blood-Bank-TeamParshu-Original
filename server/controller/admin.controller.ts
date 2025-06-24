@@ -1,8 +1,7 @@
-import { Admin, BloodRequest, Donation, DonationLocation, Donor, Inventory, Organisation, Patient } from '../model/model';
+import { Admin, BloodRequest, Donation, DonationLocation, User, Inventory, Organisation } from '../model/model';
 import { IDonationLocation } from '../model/schema/donation-location.schema';
 import { IBloodRequest } from '../model/schema/blood-request.schema';
-import { IPatient } from '../model/schema/patient.schema';
-import { IDonor } from '../model/schema/donor.schema';
+import { IUser } from '../model/schema/user.schema';
 import { IAdmin } from '../model/schema/admin.schema';
 import ResponseApi from '../util/ApiResponse.util';
 import { Request, Response } from 'express';
@@ -151,7 +150,7 @@ const deleteDonationLocation = async (req: Request, res: Response) => {
 
 const getBloodRequests = async (req: Request, res: Response) => {
   try{
-    const bloodRequests = await BloodRequest.find({}).populate("patientId", "name email phoneNo") as IBloodRequest[];
+    const bloodRequests = await BloodRequest.find({}).populate("userId", "name email phoneNo") as IBloodRequest[];
     return ResponseApi(res, 200, 'Blood requests retrieved successfully', bloodRequests);
   }catch(error){
     return ResponseApi(res, 500, error instanceof Error ? error.message : 'An unknown error occurred while getting the blood requests');
@@ -177,71 +176,37 @@ const deleteBloodRequest = async (req: Request, res: Response) => {
   }
 }
 
-const getDonors = async (req: Request, res: Response) => {
+const getUsers = async (req: Request, res: Response) => {
   try{
-    const donor = await Donor.find({}) as IDonor[];
-    return ResponseApi(res, 200, 'Donors retrieved successfully', donor.map((donor) => {
-      donor.password = "******"
-      return donor
+    const users = await User.find({}) as IUser[];
+    return ResponseApi(res, 200, 'Users retrieved successfully', users.map((user) => {
+      user.password = "******"
+      return user
     }));
   }catch(error){
-    return ResponseApi(res, 500, error instanceof Error ? error.message : 'An unknown error occurred while getting the donors');
+    return ResponseApi(res, 500, error instanceof Error ? error.message : 'An unknown error occurred while getting the Users');
   }
 }
 
-const deleteDonor = async (req: Request, res: Response) => {
+const deleteUsers = async (req: Request, res: Response) => {
   try{
-    const { donorId } = req.body;
+    const { userId } = req.body;
 
-    if(!donorId){
-      return ResponseApi(res, 400, 'Donor ID is required');
+    if(!userId){
+      return ResponseApi(res, 400, 'User ID is required');
     }
 
-    const donor = await Donor.findByIdAndDelete(donorId);
-    if(!donor){
-      return ResponseApi(res, 404, 'Donor not found');
+    const user = await User.findByIdAndDelete(userId);
+    if(!user){
+      return ResponseApi(res, 404, 'User not found');
     }
 
-    return ResponseApi(res, 200, 'Donor deleted successfully');
+    return ResponseApi(res, 200, 'User deleted successfully');
   }catch(error){
-    return ResponseApi(res, 500, error instanceof Error ? error.message : 'An unknown error occurred while deleting the donor');
+    return ResponseApi(res, 500, error instanceof Error ? error.message : 'An unknown error occurred while deleting the user');
   }
 }
 
-const getPatients = async (req: Request, res: Response) => {
-  try{
-    const patients = await Patient.find({}) as IPatient[];
-    return ResponseApi(res, 200, 'Patients retrieved successfully', patients.map((patient) => {
-      patient.password = "******"
-      return patient
-    }));
-  }catch(error){
-    return ResponseApi(res, 500, error instanceof Error ? error.message : 'An unknown error occurred while getting the patients');
-  }
-}
-
-const deletePatient = async (req: Request, res: Response) => {
-  try{
-    const { patientId } = req.body;
-
-    if(!patientId){
-      return ResponseApi(res, 400, 'Patient ID is required');
-    }
-
-    await BloodRequest.deleteMany({
-      patientId
-    })
-
-    const patient = await Patient.findByIdAndDelete(patientId);
-    if(!patient){
-      return ResponseApi(res, 404, 'Patient not found');
-    }
-
-    return ResponseApi(res, 200, 'Patient deleted successfully');
-  }catch(error){
-    return ResponseApi(res, 500, error instanceof Error ? error.message : 'An unknown error occurred while deleting the patient');
-  }
-}
 
 const getOrganisation = async (req: Request, res: Response) => {
   try{
@@ -284,15 +249,13 @@ const deleteOrganisation = async (req: Request, res: Response) => {
 
 const getAnalytics = async (req: Request, res: Response) => {
   try{
-    const donors = await Donor.countDocuments();
-    const patients = await Patient.countDocuments();
+    const users = await User.countDocuments();
     const organisations = await Organisation.countDocuments();
     const donationLocations = await DonationLocation.countDocuments();
     const bloodRequests = await BloodRequest.countDocuments();
 
     return ResponseApi(res, 200, 'Analytics retrieved successfully', {
-      donors,
-      patients,
+      users,
       organisations,
       donationLocations,
       bloodRequests,
@@ -468,15 +431,13 @@ export {
   getBloodRequests,
   getOrganisation,
   verifyOtpAdmin,
-  deletePatient,
   resetPassword,
   sendOtpAdmin,
   getAnalytics,
   verifyAdmin,
-  deleteDonor,
-  getPatients,
+  deleteUsers,
   updateUser,
-  getDonors,
+  getUsers,
   register,
   login,
 };

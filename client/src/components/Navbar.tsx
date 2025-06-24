@@ -1,4 +1,4 @@
-import { Droplets, Moon, Sun } from "lucide-react"
+import { Moon, Sun } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import LogOut from "./Logout"
 import { useThemeStore } from "../store/themeStore"
@@ -18,16 +18,16 @@ const Navbar = () => {
             }`}
         >
             <div className="flex items-center gap-2">
-                <Droplets className="w-6 h-6 text-primary" />
+                <img src="/stethoscope.png" className="h-14 w-14"/>
                 <button
                     onClick={() => navigate("/")}
-                    className={`text-lg md:text-xl font-bold text-transparent bg-clip-text truncate
+                    className={`text-lg md:text-2xl font-bold text-transparent bg-clip-text truncate
                         ${theme === 'light'
                             ? 'bg-gradient-to-r from-gray-900 to-primary/80'
                             : 'bg-gradient-to-r from-white to-primary/50'
                         }`}
                 >
-                    BloodSphere
+                    Dhvani
                 </button>
             </div>
             <div className="flex items-center gap-2">
@@ -38,9 +38,9 @@ const Navbar = () => {
                     className={theme === 'light' ? 'text-gray-700 hover:text-gray-900' : 'text-white hover:text-gray-200'}
                 >
                     {theme === "light" ? (
-                        <Moon className="h-[1.2rem] w-[1.2rem]" />
+                        <Moon className="w-10 h-10" />
                     ) : (
-                        <Sun className="h-[1.2rem] w-[1.2rem]" />
+                        <Sun className="w-10 h-10" />
                     )}
                 </Button>
                 {user && <LogOut />}

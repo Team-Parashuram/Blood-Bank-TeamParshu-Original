@@ -1,7 +1,7 @@
 import { Schema, Document, Types } from 'mongoose';
 
 interface IBloodRequest extends Document {
-  patientId: Types.ObjectId;
+  userId: Types.ObjectId;
   quantity: string;
   type: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   completed: boolean;
@@ -12,10 +12,10 @@ interface IBloodRequest extends Document {
 
 const BloodRequestSchema = new Schema<IBloodRequest>(
   {
-    patientId: {
+    userId: {
       type: Schema.Types.ObjectId,
-      ref: 'Patient',
-      required: [true, 'PatientId is required'],
+      ref: 'User',
+      required: [true, 'userId is required'],
       trim: true,
     },
     quantity: {
