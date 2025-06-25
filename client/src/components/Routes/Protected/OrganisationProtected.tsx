@@ -3,7 +3,7 @@ import { useState, useEffect, ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import MedicalLoader from '@/components/Loader';
 import axiosInstance from '@/util/axiosInstance';
-import { useUserStore } from '@/store/store';
+import { useUserStore } from '@/store/useUserStore';
 
 interface ProtectedOrganisationProps {
   children: ReactNode;

@@ -66,12 +66,12 @@ const RegisterAdmin = () => {
 
   return (
     <Layout>
-    <div className="min-h-screen bg-gradient-to-b from-base-100 to-primary/20" data-theme="bloodsphere">
+    <div className="min-h-screen bg-slate-100">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <aside className="relative block h-16 lg:order-last lg:col-span-5 lg:h-full xl:col-span-6">
           <img
             alt="Blood Donation"
-            src="/blood-donor-register.jpg"
+            src="/admin-register-health.webp"
             className="absolute inset-0 object-cover w-full h-full opacity-90"
           />
           
@@ -108,7 +108,7 @@ const RegisterAdmin = () => {
           </div>
         </aside>
 
-        <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+        <main className="flex items-center justify-center px-8 py-8 bg-slate-100 text-slate-600 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <Card className="w-full max-w-2xl">
             <CardHeader className="space-y-1">
               <div className="flex items-center gap-2">
@@ -291,7 +291,7 @@ const RegisterAdmin = () => {
                   )}
 
                   <div className="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
-                    <Button type="submit" size="lg" className="w-full sm:w-auto">
+                    <Button type="submit" size="lg" className="w-full text-slate-200 sm:w-auto">
                       Create account
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>

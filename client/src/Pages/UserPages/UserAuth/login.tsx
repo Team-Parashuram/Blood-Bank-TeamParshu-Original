@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { useUserStore } from "@/store/useUserStore"
 
 const ForgotPasswordModal = ({
   isOpen,
@@ -181,6 +182,7 @@ const LoginUser = () => {
   const [formData, setFormData] = useState({ email: "", password: "" })
   const [error, setError] = useState("")
   const [showResetModal, setShowResetModal] = useState(false)
+  const setUser = useUserStore((s) => s.setUser)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -193,7 +195,19 @@ const LoginUser = () => {
     try {
       const response = await axiosInstance.post("/user/login", formData)
       if (response.status === 200) {
-        localStorage.setItem("token", response.data.data)
+      const token = response.data.data as string
+      localStorage.setItem("token", token)
+      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`
+      const profileRes = await axiosInstance.get("/user/verifyUser")
+      if(profileRes.status === 200) {
+        const user = profileRes.data.data;
+        setUser({
+          name: user.name,
+          email: user.email,
+          token,
+          address: user.address
+        })
+      }
         navigate("/user/dashboard")
       }
     } catch (error) {

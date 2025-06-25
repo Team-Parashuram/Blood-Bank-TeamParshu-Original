@@ -6,11 +6,10 @@ import { useEffect, useState } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import type { Types } from "mongoose"
 import axiosInstance from "@/util/axiosInstance"
 import { motion } from "framer-motion"
 import { Sidebar } from "./_components/Sidebar"
-import { useUserStore } from "@/store/store"
+import { useUserStore } from "@/store/useUserStore"
 import { useThemeStore } from "@/store/themeStore"
 import Navbar from "@/components/Navbar"
 import { Badge } from "@/components/ui/badge"
@@ -24,10 +23,10 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 
 export interface IDonation {
     _id: string
-    donorId: Types.ObjectId
+    donorId: string
     quantity: string
     organisationId: {
-        _id: Types.ObjectId
+        _id: string
         name: string
     }
     createdAt: string
@@ -35,7 +34,7 @@ export interface IDonation {
 
     export interface IDonationLocation {
     _id: string
-    organisationId: Types.ObjectId
+    organisationId: string
     name: string
     contactDetails: string
     location: string

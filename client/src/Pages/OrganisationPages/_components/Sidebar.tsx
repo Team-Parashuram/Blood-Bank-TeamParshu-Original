@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, BarChart, Package, MapPin, Droplet, Activity
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
-import { useUserStore } from "@/store/store"
+import { useUserStore } from "@/store/useUserStore"
 import { useThemeStore } from "@/store/themeStore"
 
 interface SidebarProps {

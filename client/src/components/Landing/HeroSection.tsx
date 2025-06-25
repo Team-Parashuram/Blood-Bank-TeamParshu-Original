@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Heart, ArrowRight, Globe, Users, ChevronDown, Activity, Shield, Zap } from "lucide-react";
+import { Heart, ArrowRight, Globe, Users, ChevronDown, Activity, Shield, Zap, Droplet, Stethoscope} from "lucide-react";
 import { useThemeStore } from "@/store/themeStore";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +19,7 @@ const HeroSection = () => {
     const { theme } = useThemeStore();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [animationKey, setAnimationKey] = useState(0);
+    const [crossClickCount, setCrossClickCount] = useState(0);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -28,11 +29,19 @@ const HeroSection = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // Heartbeat waveform
     const heartbeatPath = "M0,50 L80,50 L85,50 L90,30 L95,70 L100,10 L105,90 L110,50 L115,50 L195,50 L200,50 L205,30 L210,70 L215,10 L220,90 L225,50 L230,50 L310,50 L315,50 L320,30 L325,70 L330,10 L335,90 L340,50 L345,50 L425,50 L430,50 L435,30 L440,70 L445,10 L450,90 L455,50 L460,50 L540,50";
 
     const handleNavigation = (path: string) => {
         navigate(path);
+    };
+
+    const handleCrossClick = () => {
+        const newCount = crossClickCount + 1;
+        setCrossClickCount(newCount);
+        
+        if (newCount >= 15) {
+            navigate('/admin/login');
+        }
     };
 
     const containerVariants = {
@@ -58,16 +67,15 @@ const HeroSection = () => {
         },
     };
 
+
     return (
         <div className="relative min-h-screen overflow-hidden">
             <div className="absolute inset-0">
-        
                 <div className={`absolute inset-0 ${
                     theme === "light" 
                         ? "bg-gradient-to-br from-slate-50 via-white to-red-50" 
                         : "bg-slate-900"
                 }`}>
-                
                     <div className="absolute inset-0 pointer-events-none opacity-60">
                         <div className={`absolute inset-0 ${
                             theme === "light"
@@ -77,100 +85,85 @@ const HeroSection = () => {
                     </div>
                 </div>
 
-                <motion.div 
-                    className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ${
-                        theme === "light" ? "opacity-[0.03]" : "opacity-[0.05]"
-                    }`}
-                    initial={{ scale: 0, rotate: 0 }}
-                    animate={{ scale: 1, rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                >
-                    <div className="relative w-96 h-96">
-                        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-100 h-50 rounded-lg ${
-                            theme === "light" ? "bg-red-500" : "bg-primary"
-                        }`}></div>
-                        <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-50 h-100 rounded-lg ${
-                            theme === "light" ? "bg-red-500" : "bg-primary"
-                        }`}></div>
-                    </div>
-                </motion.div>
+                <div className="absolute inset-0 overflow-hidden">
+                    <motion.div
+                        className={`absolute top-2/3 left-2/3 w-12 h-12 ${
+                            theme === "light" ? "bg-purple-200/35" : "bg-primary/25"
+                        } rounded-full blur-sm`}
+                        animate={{
+                            scale: [1, 1.4, 1],
+                            opacity: [0.35, 0.65, 0.35],
+                            x: [-10, 10, -10],
+                            y: [-10, 10, -10]
+                        }}
+                        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    />
+                </div>
 
-                {theme === "light" ? (
-                    <>
-                        <motion.div
-                        className="absolute rounded-full w-72 h-72 bg-red-200/50 top-10 left-1/4 blur-3xl"
-                        animate={{ scale: [1, 1.2, 1] }}
-                        transition={{ duration: 8, repeat: Infinity }}
-                        />
-                        <motion.div
-                        className="absolute rounded-full w-96 h-96 bg-blue-200/40 bottom-10 right-1/3 blur-3xl"
-                        animate={{ scale: [1, 1.1, 1] }}
-                        transition={{ duration: 10, repeat: Infinity }}
-                        />
-                        <motion.div 
-                            className="absolute w-24 h-24 rounded-full opacity-25 top-1/2 right-10 bg-gradient-to-r from-purple-200 to-indigo-200 blur-xl"
-                            animate={{
-                                scale: [1, 1.4, 1],
-                                opacity: [0.25, 0.45, 0.25]
-                            }}
-                            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                        />
-                    </>
-                ) : (
-                    <>
-                        <motion.div 
-                            className="absolute w-32 h-32 rounded-full top-20 right-1/4 bg-gradient-to-r from-primary/20 to-primary/30 opacity-40 blur-xl"
-                            animate={{
-                                scale: [1, 1.2, 1],
-                                opacity: [0.4, 0.6, 0.4]
-                            }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        />
-                        <motion.div 
-                            className="absolute w-40 h-40 rounded-full bottom-20 left-1/4 bg-gradient-to-r from-primary/10 to-primary/20 opacity-30 blur-xl"
-                            animate={{
-                                scale: [1, 1.3, 1],
-                                opacity: [0.3, 0.5, 0.3]
-                            }}
-                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                        />
-                        <motion.div 
-                            className="absolute w-24 h-24 rounded-full top-1/2 right-10 bg-gradient-to-r from-primary/15 to-primary/25 opacity-35 blur-xl"
-                            animate={{
-                                scale: [1, 1.4, 1],
-                                opacity: [0.35, 0.55, 0.35]
-                            }}
-                            transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-                        />
-                    </>
-                )}
+                {/* Floating Red Cross for Admin Access */}
+                <motion.button
+                    onClick={handleCrossClick}
+                    className={`absolute md:top-1/3 md:right-[35%] md:z-20 w-15 h-15 md:w-24 md:h-24 ${
+                        theme === "light" ? "text-red-500/30" : "text-red-400/30"
+                    } hover:${theme === "light" ? "text-red-500/50" : "text-red-400/50"} transition-colors cursor-pointer`}
+                    whileHover={{ scale: 1.2, rotate: 90 }}
+                    whileTap={{ scale: 0.8 }}
+                    transition={{ 
+                        scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                        opacity: { duration: 3, repeat: Infinity, ease: "easeInOut" },
+                        rotate: { duration: 12, repeat: Infinity, ease: "linear" }
+                    }}
+                >
+                    <div className={`relative w-full h-full rounded-lg shadow-lg ${
+                        theme === "light" 
+                            ? "bg-gradient-to-br from-red-400 to-red-600" 
+                            : "bg-gradient-to-br from-primary to-primary/80"
+                    }`}>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className={`w-3/4 h-1/5 rounded-sm ${
+                                theme === "light" ? "bg-white/90" : "bg-white/80"
+                            }`}></div>
+                        </div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                            <div className={`w-1/5 h-3/4 rounded-sm ${
+                                theme === "light" ? "bg-white/90" : "bg-white/80"
+                            }`}></div>
+                        </div>
+                    </div>
+                </motion.button>
 
                 <div className="absolute inset-0 overflow-hidden">
-                    {Array.from({length: 20}).map((_, i) => (
+                    {Array.from({length: 25}).map((_, i) => (
                         <motion.div
                             key={i}
-                            className={`absolute w-1 h-1 rounded-full ${
-                                theme === "light" ? "bg-red-300" : "bg-primary"
-                            } opacity-30`}
+                            className={`absolute rounded-full ${
+                                i % 3 === 0 ? 'w-1.5 h-1.5' : i % 3 === 1 ? 'w-1 h-1' : 'w-0.5 h-0.5'
+                            } ${
+                                theme === "light" 
+                                    ? i % 2 === 0 ? "bg-red-400" : "bg-blue-400" 
+                                    : "bg-primary"
+                            } opacity-40`}
                             style={{
                                 left: `${Math.random() * 100}%`,
                                 top: `${Math.random() * 100}%`,
                             }}
                             animate={{
-                                y: [-20, -40, -20],
-                                opacity: [0.3, 0.8, 0.3],
-                                scale: [1, 1.5, 1]
+                                y: [-30, -60, -30],
+                                x: [0, Math.random() * 20 - 10, 0],
+                                opacity: [0.4, 0.9, 0.4],
+                                scale: [1, 2, 1]
                             }}
                             transition={{
-                                duration: 3 + Math.random() * 2,
+                                duration: 4 + Math.random() * 3,
                                 repeat: Infinity,
                                 ease: "easeInOut",
-                                delay: Math.random() * 2
+                                delay: Math.random() * 3
                             }}
                         />
                     ))}
                 </div>
             </div>
+
             <motion.section
                 className={`relative z-10 min-h-screen hero flex flex-col items-center justify-center px-6 ${
                     theme === "light" ? "text-gray-900" : "text-white"
@@ -180,6 +173,7 @@ const HeroSection = () => {
                 variants={containerVariants}
             >
                 <div className="max-w-6xl mx-auto mt-10 text-center">
+                    {/* Heartbeat Animation */}
                     <svg 
                         height="200" 
                         viewBox="0 0 540 100"
@@ -212,6 +206,7 @@ const HeroSection = () => {
                         }
                     `}</style>
 
+                    {/* Main Title */}
                     <motion.div variants={itemVariants} className="mb-6">
                         <h1 className={`text-6xl md:text-7xl font-bold leading-tight mb-4 ${
                             theme === "light" 
@@ -237,7 +232,7 @@ const HeroSection = () => {
                         </motion.div>
                     </motion.div>
 
-                    {/* Enhanced Hindi Tagline */}
+
                     <motion.div variants={itemVariants} className="mb-6">
                         <p className={`text-2xl md:text-3xl font-medium mb-2 ${
                             theme === "light" ? "text-red-600" : "text-primary"
@@ -251,7 +246,6 @@ const HeroSection = () => {
                         </p>
                     </motion.div>
 
-                    {/* Feature Pills */}
                     <motion.div 
                         variants={itemVariants}
                         className="flex flex-wrap justify-center gap-3 mb-10"
@@ -260,7 +254,9 @@ const HeroSection = () => {
                             { icon: Activity, text: "AI Diagnostics" },
                             { icon: Heart, text: "Health Tracking" },
                             { icon: Shield, text: "Secure Records" },
-                            { icon: Zap, text: "Real-time Alerts" }
+                            { icon: Zap, text: "Real-time Alerts" },
+                            { icon: Droplet, text: "Blood Bank" },
+                            { icon: Stethoscope, text: "Disease Checker" }
                         ].map((feature, index) => (
                             <motion.div
                                 key={index}
@@ -282,8 +278,7 @@ const HeroSection = () => {
                             </motion.div>
                         ))}
                     </motion.div>
-
-                    {/* Enhanced CTA Buttons */}
+                    {/* CTA Buttons */}
                     <motion.div 
                         variants={itemVariants}
                         className="flex flex-col items-center justify-center gap-4 mb-12 sm:flex-row"

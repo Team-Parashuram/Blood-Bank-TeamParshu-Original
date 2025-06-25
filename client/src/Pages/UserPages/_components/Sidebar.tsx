@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { ChevronLeft, ChevronRight, Droplet, ClipboardList, BotIcon, HelpCircle, User2, FileText, Activity, Upload } from "lucide-react"
+import { ChevronLeft, ChevronRight, Droplet, Hospital, ClipboardList, BotIcon, HelpCircle, User2, FileText, Activity, Upload } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useUserStore } from "@/store/store"
+import { useUserStore } from "@/store/useUserStore"
 import { useThemeStore } from "@/store/themeStore"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
 interface SidebarProps {
-    setActiveTab: (tab: "availability" | "requests" | "chatbot" | "faq" | "profile" | "my-reports" | "disease-checker" | "submit-report") => void
+    setActiveTab: (tab: "availability" | "requests" | "find-hospital" | "chatbot" | "faq" | "profile" | "my-reports" | "disease-checker" | "submit-report") => void
     activeTab: string
     isCollapsed: boolean
     setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>
@@ -19,6 +19,7 @@ const sidebarItems = [
     { icon: Activity, label: "Disease Checker", id: "disease-checker" },
     { icon: Upload, label: "Submit Report", id: "submit-report" },
     { icon: FileText, label: "My Reports", id: "my-reports" },
+    {icon: Hospital, label: "Find Hospital near me", id: "find-hospital"},
     { icon: Droplet, label: "Blood Availability", id: "availability" },
     { icon: ClipboardList, label: "Blood Requests", id: "requests" },
     { icon: BotIcon, label: "Chat With AI", id: "chatbot" },

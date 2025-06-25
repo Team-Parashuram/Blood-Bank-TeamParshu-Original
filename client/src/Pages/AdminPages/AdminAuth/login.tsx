@@ -89,12 +89,12 @@ const ForgotPasswordModal = ({ isOpen, onClose, setError }: { isOpen: boolean; o
           exit={{ opacity: 0 }}
         >
           <motion.div
-            className="bg-white rounded-lg shadow-lg max-w-md w-full p-6"
+            className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg"
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
           >
-            <h2 className="text-xl font-bold mb-4">Forgot Password</h2>
+            <h2 className="mb-4 text-xl font-bold">Forgot Password</h2>
             {info && <p className="mb-4 text-green-600">{info}</p>}
             {resetStep === 1 && (
               <form onSubmit={sendOtpPassReset} className="space-y-4">
@@ -207,12 +207,12 @@ const LoginAdmin = () => {
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-b from-base-100 to-primary/20" data-theme="bloodsphere">
+      <div className="min-h-screen bg-slate-100">
         <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
           <section className="relative flex items-end h-32 bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
             <img
               alt="Blood Donation"
-              src="/blood-donor-login.jpg"
+              src="/admin-login-health.webp"
               className="absolute inset-0 object-cover w-full h-full opacity-80"
             />
 
@@ -248,7 +248,7 @@ const LoginAdmin = () => {
             </div>
           </section>
 
-          <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
+          <main className="flex items-center justify-center px-8 py-8 text-slate-600 bg-slate-100 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
             <Card className="w-full max-w-xl">
               <CardHeader className="space-y-1">
                 <div className="flex items-center gap-2">
@@ -333,11 +333,11 @@ const LoginAdmin = () => {
                   )}
 
                   <div className="space-y-4">
-                    <Button type="submit" className="w-full" size="lg">
+                    <Button type="submit" className="w-full text-slate-200" size="lg">
                       Sign in as Admin
                       <ArrowRight className="w-4 h-4 ml-2" />
                     </Button>
-                    <div className="flex justify-between items-center">
+                    <div className="flex items-center justify-between">
                       <p className="text-sm text-gray-600">
                         Not registered?{" "}
                         <Link to="/admin/register" className="font-medium text-primary hover:underline">

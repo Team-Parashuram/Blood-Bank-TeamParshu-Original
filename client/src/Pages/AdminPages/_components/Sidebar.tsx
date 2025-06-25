@@ -4,7 +4,7 @@ import { ChevronLeft, ChevronRight, BarChart2, Users, UserPlus, Building2, MapPi
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { useUserStore } from "@/store/store"
+import { useUserStore } from "@/store/useUserStore"
 import { useThemeStore } from "@/store/themeStore"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 

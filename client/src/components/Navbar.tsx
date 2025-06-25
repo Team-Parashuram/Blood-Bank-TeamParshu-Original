@@ -2,7 +2,7 @@ import { Moon, Sun } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 import LogOut from "./Logout"
 import { useThemeStore } from "../store/themeStore"
-import { useUserStore } from "../store/store"
+import { useUserStore } from "../store/useUserStore"
 import { Button } from "@/components/ui/button"
 
 const Navbar = () => {

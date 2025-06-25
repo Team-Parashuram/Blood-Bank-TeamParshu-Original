@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 import { Toaster } from 'react-hot-toast';
 import App from './App.tsx';
+import "leaflet/dist/leaflet.css";
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(

@@ -1,4 +1,3 @@
-"use client"
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import axiosInstance from "@/util/axiosInstance"
@@ -6,10 +5,9 @@ import { motion } from "framer-motion"
 import { useThemeStore } from "@/store/themeStore"
 import { User, Mail, Phone, AlertCircle, Calendar, Droplet, Ruler, Weight, UserCheck, MapPin, CreditCard } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import type { Types } from "mongoose"
 
 interface IPatient {
-    _id: Types.ObjectId
+    _id: string
     name: string
     email: string
     phoneNo?: string
@@ -58,9 +56,9 @@ const Profile = () => {
             ? "bg-red-50 text-red-700 border-red-200" 
             : "bg-primary/10 text-primary border-primary/30"
     }
-  return (
+return (
     <>
-      <div className="container p-4 mx-auto md:p-6">
+        <div className="container p-4 mx-auto md:p-6">
                         <motion.div 
                             initial={{ opacity: 0, y: 20 }} 
                             animate={{ opacity: 1, y: 0 }} 

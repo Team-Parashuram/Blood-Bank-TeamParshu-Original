@@ -14,6 +14,7 @@ import Profile from "./_components/Profile"
 import MyReports from "./_components/MyReports"
 import DiseaseChecker from "./_components/DiseaseChecker"
 import SubmitReport from "./_components/SubmitReport"
+import NeabyHospital from "./_components/NeabyHospital"
 
 interface IPatient {
     _id: Types.ObjectId
@@ -31,7 +32,7 @@ interface IPatient {
 
 const UserPage = () => {
     const [patientInfo, setPatientInfo] = useState<IPatient | null>(null)
-    const [activeTab, setActiveTab] = useState<"availability" | "requests" | "chatbot" | "faq" | "profile" | "my-reports" | "disease-checker" | "submit-report">("availability")
+    const [activeTab, setActiveTab] = useState<"availability" | "requests" | "find-hospital"| "chatbot" | "faq" | "profile" | "my-reports" | "disease-checker" | "submit-report">("disease-checker")
     const [isCollapsed, setIsCollapsed] = useState(false)
     const { theme } = useThemeStore()
 
@@ -75,6 +76,8 @@ const UserPage = () => {
                 return <DiseaseChecker />
             case "submit-report":
                 return <SubmitReport />
+            case "find-hospital":
+                return <NeabyHospital />
             default:
                 return null
         }

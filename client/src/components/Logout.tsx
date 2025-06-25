@@ -2,7 +2,7 @@ import type React from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "./ui/button"
 import { LogOutIcon } from "lucide-react"
-import { useUserStore } from "../store/store"
+import { useUserStore } from "../store/useUserStore"
 
 interface LogoutProps {
   className?: string
