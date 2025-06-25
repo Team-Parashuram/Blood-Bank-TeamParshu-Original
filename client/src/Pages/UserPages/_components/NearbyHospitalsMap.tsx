@@ -148,11 +148,8 @@ function haversine(lat1: number, lon1: number, lat2: number, lon2: number): numb
     if (!validateCoordinates(lat1, lon1) || !validateCoordinates(lat2, lon2)) {
         return Infinity;
     }
-        if (
-            Math.abs(lat1) > 90 || Math.abs(lon1) > 180 || 
-            Math.abs(lat2) > 90 || Math.abs(lon2) > 180
-        ) {
-            return Infinity;
+        if (Math.abs(lat1) > 90 || Math.abs(lon1) > 180 ||Math.abs(lat2) > 90 || Math.abs(lon2) > 180){
+        return Infinity;
         }
     
     const toRad = (x: number) => (x * Math.PI) / 180;
@@ -183,7 +180,6 @@ class RateLimiter {
             const waitTime = this.minInterval - timeSinceLastCall;
             await new Promise(resolve => setTimeout(resolve, waitTime));
         }
-        
         this.lastCall = Date.now();
     }
 }

@@ -103,7 +103,7 @@ const HeroSection = () => {
                 {/* Floating Red Cross for Admin Access */}
                 <motion.button
                     onClick={handleCrossClick}
-                    className={`absolute md:top-1/3 md:right-[35%] md:z-20 w-15 h-15 md:w-24 md:h-24 ${
+                    className={`absolute md:top-1/3 md:right-[35%] z-20 w-15 h-15 md:w-24 md:h-24 ${
                         theme === "light" ? "text-red-500/30" : "text-red-400/30"
                     } hover:${theme === "light" ? "text-red-500/50" : "text-red-400/50"} transition-colors cursor-pointer`}
                     whileHover={{ scale: 1.2, rotate: 90 }}

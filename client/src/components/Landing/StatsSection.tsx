@@ -70,14 +70,6 @@ const StatsSection = () => {
             variants={containerVariants}
             className="mb-16 text-center"
             >
-            <motion.div variants={itemVariants}>
-                <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${theme === "light" ? "text-gray-900" : "text-white"}`}>
-                Trusted by Healthcare Professionals
-                </h2>
-                <p className={`text-lg max-w-2xl mx-auto ${theme === "light" ? "text-gray-600" : "text-slate-300"}`}>
-                Join thousands of users who rely on Dhvani for their healthcare management and medical assistance.
-                </p>
-            </motion.div>
             </motion.div>
 
             <motion.div

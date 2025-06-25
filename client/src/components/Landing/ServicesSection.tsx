@@ -35,7 +35,7 @@ const ServicesSection = () => {
             "Evaluate stroke risk factors with our specialized assessment tool designed for early detection and prevention.",
         features: ["Risk Evaluation", "Prevention Tips", "Health Monitoring", "Expert Consultation"],
         badge: "Specialized",
-        badgeColor: theme === "light" ? "bg-purple-100 text-purple-800" : "bg-secondary/20 text-secondary",
+        badgeColor: theme === "light" ? "bg-purple-100 text-purple-800" : "bg-purple-900 text-slate-200",
         },
         {
         icon: Droplet,
@@ -195,36 +195,50 @@ const ServicesSection = () => {
                 : "bg-gradient-to-r from-slate-800 to-slate-700 border border-slate-600"
             }`}
             >
-            <div className="flex items-center justify-center mb-4">
-                <Shield className={`w-8 h-8 mr-3 ${theme === "light" ? "text-red-500" : "text-primary"}`} />
-                <h3 className={`text-2xl font-bold ${theme === "light" ? "text-gray-900" : "text-white"}`}>
-                Why Choose Dhvani?
-                </h3>
-            </div>
-            <p className={`text-lg mb-6 max-w-2xl mx-auto ${theme === "light" ? "text-gray-600" : "text-slate-300"}`}>
-                Experience healthcare like never before with our AI-powered platform, secure data handling, and 24/7
-                availability.
-            </p>
-            <div className="flex flex-wrap justify-center gap-6">
-                <div className="flex items-center">
-                <Clock className={`w-5 h-5 mr-2 ${theme === "light" ? "text-green-500" : "text-success"}`} />
-                <span className={`font-medium ${theme === "light" ? "text-gray-700" : "text-slate-300"}`}>
-                    24/7 Available
-                </span>
-                </div>
-                <div className="flex items-center">
-                <Shield className={`w-5 h-5 mr-2 ${theme === "light" ? "text-blue-500" : "text-info"}`} />
-                <span className={`font-medium ${theme === "light" ? "text-gray-700" : "text-slate-300"}`}>
-                    Secure & Private
-                </span>
-                </div>
-                <div className="flex items-center">
-                <Users className={`w-5 h-5 mr-2 ${theme === "light" ? "text-purple-500" : "text-secondary"}`} />
-                <span className={`font-medium ${theme === "light" ? "text-gray-700" : "text-slate-300"}`}>
-                    Expert Support
-                </span>
-                </div>
-            </div>
+              <div className="absolute inset-0 opacity-5">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,rgba(239,68,68,0.4)_0%,transparent_25%),radial-gradient(circle_at_75%_75%,rgba(59,130,246,0.4)_0%,transparent_25%)]"></div>
+                    </div>
+
+                    <div className="relative z-10">
+                        <div className="flex items-center justify-center mb-6">
+                            <Shield className={`w-8 h-8 mr-3 ${theme === "light" ? "text-red-500" : "text-red-400"}`} />
+                            <h3 className={`text-3xl font-bold ${theme === "light" ? "text-gray-900" : "text-white"}`}>
+                                Why Choose Dhvani?
+                            </h3>
+                        </div>
+                        
+                        <p className={`text-lg mb-8 max-w-3xl mx-auto ${
+                            theme === "light" ? "text-gray-600" : "text-slate-300"
+                        }`}>
+                            Experience healthcare reimagined with cutting-edge AI technology, uncompromising security, and round-the-clock availability for all your medical needs.
+                        </p>
+
+                        <div className="grid max-w-4xl gap-8 mx-auto md:grid-cols-3">
+                            {[
+                                { icon: Clock, label: "24/7 Available", desc: "Always accessible healthcare", color: "emerald" },
+                                { icon: Shield, label: "Secure & Private", desc: "Bank-level data protection", color: "blue" },
+                                { icon: Users, label: "Expert Support", desc: "Professional medical guidance", color: "purple" }
+                            ].map((item, index) => (
+                                <div key={index} className="flex flex-col items-center">
+                                    <div className={`w-16 h-16 mb-4 rounded-2xl flex items-center justify-center ${
+                                        theme === "light" ? `bg-${item.color}-100` : `bg-${item.color}-500/20`
+                                    }`}>
+                                        <item.icon className={`w-8 h-8 text-${item.color}-500`} />
+                                    </div>
+                                    <h4 className={`font-bold text-lg mb-2 ${
+                                        theme === "light" ? "text-gray-900" : "text-white"
+                                    }`}>
+                                        {item.label}
+                                    </h4>
+                                    <p className={`text-sm ${
+                                        theme === "light" ? "text-gray-600" : "text-slate-300"
+                                    }`}>
+                                        {item.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
             </motion.div>
         </div>
         </section>
